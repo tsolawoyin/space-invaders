@@ -12,8 +12,10 @@
 ;; TO DO
 ;; - tank ✅
 ;; - missile
+;; - tank + missile
 ;; - UFOs
-;; - game
+;; - UFOs + missile
+;; - tank + missiles + UFOs = game
 
 ;; DOMAIN ANALYSIS
 ;; CONSTANTS
