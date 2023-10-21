@@ -48,7 +48,7 @@
   (big-bang t
     (on-tick next-tank)
     (to-draw render-tank)
-    (on-key  handle-key)))
+    (on-key  handle-tank)))
 
 
 ;; Tank -> Tank
@@ -96,17 +96,17 @@
 ;; change the dir of tank if certain keys are pressed
 ;;  - move left if the left key is pressed
 ;;  - move right if the right key is pressed
-(check-expect (handle-key T0 "left") (make-tank (tank-x T0) -1))
-(check-expect (handle-key T0 "right") (make-tank (tank-x T0) 1))
-(check-expect (handle-key T2 "left") (make-tank (tank-x T2) -1))
-(check-expect (handle-key T2 "right") (make-tank (tank-x T2) 1))
-(check-expect (handle-key T2 "up")   (make-tank (tank-x T2) (tank-dir T2)))
-;(define (handle-key t k) t)
-(define (handle-key t ke)
-  (cond [(key=? ke "left") (make-tank (tank-x t) -1)]
+(check-expect (handle-tank T0 "left")  (make-tank (tank-x T0) -1))
+(check-expect (handle-tank T0 "right") (make-tank (tank-x T0) 1))
+(check-expect (handle-tank T2 "left")  (make-tank (tank-x T2) -1))
+(check-expect (handle-tank T2 "right") (make-tank (tank-x T2) 1))
+(check-expect (handle-tank T2 "up")    (make-tank (tank-x T2) (tank-dir T2)))
+;(define (handle-tank t k) t)
+(define (handle-tank t ke)
+  (cond [(key=? ke "left")  (make-tank (tank-x t) -1)]
         [(key=? ke "right") (make-tank (tank-x t) 1)]
         [else (make-tank (tank-x t) (tank-dir t))]))
-;; we will also pack all the test cases and everything inside the game function.
+
 
 
 
