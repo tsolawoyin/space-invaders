@@ -327,16 +327,9 @@
 ;(define (next-game g) g) ;stub
 
 (define (next-game g)
-  (make-game (next-tank (game-tank g))
-             (next-missiles  (game-lom  g))))
+  (make-game (next-tank       (game-tank g))
+             (valid-missiles  (game-lom  g))))
 
-
-;(define G0 (make-game (make-tank 100 1) empty)) ;tank with no missiles yet
-;(define G1 (make-game (make-tank 120 -1) (cons (make-missile 100 40) empty))) ;tank + one missile
-;(define G2 (make-game (make-tank 110 1) (cons (make-missile 100 40)
-;                                              (cons (make-missile 160 200)
-;                                                    (cons (make-missile 100 40)
-;                                                          empty)))))
 ;; Game -> Image
 ;; produce the image of the current game
 (check-expect (render-game G0) (place-images (listofimage (game-lom G0))
@@ -400,13 +393,45 @@
          (cons MISSILE
                (listofimage (rest lom)))]))
 
+
+;(define G0 (make-game (make-tank 100 1) empty)) ;tank with no missiles yet
+;(define G1 (make-game (make-tank 120 -1) (cons (make-missile 100 40) empty))) ;tank + one missile
+;(define G2 (make-game (make-tank 110 1) (cons (make-missile 100 40)
+;                                              (cons (make-missile 160 200)
+;                                                    (cons (make-missile 100 40)
+;                                                          empty)))))
+
+
 ;; Game ke -> Game
 ;; insert new missile having an x-coordinate corresponding to the tank coord and a y-coord starting at the tip of tank
-;; !!!
-(define (handle-game g ke) g)
+(check-expect (handle-game G0 " ") (make-game (handle-tank (game-tank G0) " ")
+                                              (cons (make-missile (tank-x (game-tank G0))
+                                                                  (- HEIGHT (image-height TANK)))
+                                                    (game-lom G0))))
+(check-expect (handle-game G1 " ") (make-game (handle-tank (game-tank G1) " ")
+                                              (cons (make-missile (tank-x (game-tank G1))
+                                                                  (- HEIGHT (image-height TANK)))
+                                                    (game-lom G1))))
+(check-expect (handle-game G1 "a") G1)
+(check-expect (handle-game G1 "left") (make-game (handle-tank (game-tank G1) "left")
+                                                 (game-lom G1)))
+(check-expect (handle-game G1 "right") (make-game (handle-tank (game-tank G1) "right")
+                                                 (game-lom G1)))
+;(define (handle-game g ke) g)
+(define (handle-game g ke)
+  (cond [(key=? " " ke)
+         (make-game (handle-tank (game-tank g) ke)
+                    (cons (make-missile (tank-x (game-tank g))
+                                        (- HEIGHT (image-height TANK)))
+                          (game-lom g)))]
+        [(or (key=? ke "left") (key=? ke "right"))
+         (make-game (handle-tank (game-tank g) ke)
+                    (game-lom g))]
+        [else g]))
 
+;; alright, the left and right key is not controlling the movement of this stuff. no wahala. more test cases coming up
 
+;; now let's create functions that help create new missile
 
-
-
+;; now makes sense. Olagbara. Things are really making sense
 
