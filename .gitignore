@@ -1,0 +1,3 @@
+# ignoring all .bak files. Not necessary
+*.bak 
+
