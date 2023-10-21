@@ -10,8 +10,8 @@
 ;; We work on it piece by piece.
 
 ;; TO DO
-;; - tank ✅ 21-oct-23, 6:45am
-;; - missiles
+;; - tank ✅ 21-oct-23, 6:45
+;; - missiles ✅ 21-oct-23, 21:07 
 ;; - tank + missiles
 ;; - UFOs
 ;; - UFOs + missiles
