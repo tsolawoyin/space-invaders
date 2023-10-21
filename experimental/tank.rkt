@@ -51,13 +51,6 @@
     (on-key  handle-key)))
 
 
-
-;(define T0 (make-tank (/ WIDTH 2) 1))   ;center going right
-;(define T1 (make-tank 50 1))            ;going right
-;(define T2 (make-tank 50 -1))           ;going left
-;(define T3 (make-tank WIDTH 1)          ;reach right
-;(define T4 (make-tank 0 -1)             ;reach left
-
 ;; Tank -> Tank
 ;; increase the tank current x-pos by speed while maintaining the inside the screen position of tank.
 (check-expect (next-tank T0) (make-tank (+ (tank-x T0) (* TANK-SPEED (tank-dir T0))) (tank-dir T0))) ;moving right
@@ -65,8 +58,7 @@
 (check-expect (next-tank T2) (make-tank (+ (tank-x T2) (* TANK-SPEED (tank-dir T2))) (tank-dir T2))) ;moving left
 (check-expect (next-tank T3) (make-tank (- WIDTH TANK-WIDTH/2) -1)) ;reach right ; turning back.
 (check-expect (next-tank T4) (make-tank (+ 0 TANK-WIDTH/2) 1))      ;reach left
-;; this test is kind of sufficient
-;(define (next-tank t) t)
+;(define (next-tank t) t) ;stub
 (define (next-tank t)
   (cond [(and (>= (tank-x t) (- WIDTH TANK-WIDTH/2))
               (= (tank-dir t) 1))
@@ -79,21 +71,42 @@
 
 ;; Tank -> Image
 ;; produce the image of the tank given
-;; !!!
-(define (render-tank t) BACKGROUND)
+(check-expect (render-tank T0) (place-image TANK
+                                            (tank-x T0)
+                                            (- HEIGHT TANK-HEIGHT/2)
+                                            BACKGROUND))
+(check-expect (render-tank T4) (place-image TANK
+                                            (tank-x T4)
+                                            (- HEIGHT TANK-HEIGHT/2)
+                                            BACKGROUND))
+;(define (render-tank t) BACKGROUND) ;stub
+(define (render-tank t)
+  (place-image TANK
+               (tank-x t)
+               (- HEIGHT TANK-HEIGHT/2)
+               BACKGROUND))
+
+;(define T0 (make-tank (/ WIDTH 2) 1))   ;center going right
+;(define T1 (make-tank 50 1))            ;going right
+;(define T2 (make-tank 50 -1))           ;going left
+;(define T3 (make-tank WIDTH 1)          ;reach right
+;(define T4 (make-tank 0 -1)             ;reach left
 
 ;; Tank ke -> Tank
 ;; change the dir of tank if certain keys are pressed
 ;;  - move left if the left key is pressed
 ;;  - move right if the right key is pressed
-;; !!!
-(define (handle-key t) t)
-
+(check-expect (handle-key T0 "left") (make-tank (tank-x T0) -1))
+(check-expect (handle-key T0 "right") (make-tank (tank-x T0) 1))
+(check-expect (handle-key T2 "left") (make-tank (tank-x T2) -1))
+(check-expect (handle-key T2 "right") (make-tank (tank-x T2) 1))
+(check-expect (handle-key T2 "up")   (make-tank (tank-x T2) (tank-dir T2)))
+;(define (handle-key t k) t)
+(define (handle-key t ke)
+  (cond [(key=? ke "left") (make-tank (tank-x t) -1)]
+        [(key=? ke "right") (make-tank (tank-x t) 1)]
+        [else (make-tank (tank-x t) (tank-dir t))]))
 ;; we will also pack all the test cases and everything inside the game function.
-
-
-
-
 
 
 
