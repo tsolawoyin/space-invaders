@@ -10,11 +10,11 @@
 ;; We work on it piece by piece.
 
 ;; TO DO
-;; - tank ✅
-;; - missile
-;; - tank + missile
+;; - tank ✅ 21-oct-23, 6:45am
+;; - missiles
+;; - tank + missiles
 ;; - UFOs
-;; - UFOs + missile
+;; - UFOs + missiles
 ;; - tank + missiles + UFOs = game
 
 ;; DOMAIN ANALYSIS
