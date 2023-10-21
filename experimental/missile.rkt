@@ -190,3 +190,20 @@
 
 ;; makes sense.
 
+;; so let's design the prototype of the function here
+
+;; ListOfMissile -> ListOfPosn
+;; produces the x and y coordinates of missiles
+(check-expect (listofpos empty) empty)
+(check-expect (listofpos (cons (make-missile 100 20) empty))
+              (cons (make-posn 100 20)
+                    empty))
+;(define (listofpos lom) empty) ;stub
+
+(define (listofpos lom)
+  (cond [(empty? lom) empty]
+        [else
+         (cons (make-posn (missile-x (first lom))
+                          (missile-y (first lom)))
+              (listofpos (rest lom)))]))
+
