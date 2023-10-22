@@ -5,17 +5,17 @@
 ;; Started on Saturday 21-oct-2023 <for the second time>
 ;; Doing the project to have a lot of htc concepts packed into my brain
 
-;; Be patient, will surely take days to complete
+;; Be patient, will surely take time to complete
 
 ;; We work on it piece by piece.
 
 ;; TO DO
 ;; - tank ✅ 21-oct-23, 6:45
 ;; - missiles ✅ 21-oct-23, 21:07 
-;; - tank + missiles ✅ 
-;; - UFOs ✅
-;; - UFOs + missiles => next
-;; - tank + missiles + UFOs = game
+;; - tank + missiles ✅  21-oct-23, 21:07
+;; - UFOs ✅  21-oct-23, 12:01
+;; - UFOs + missiles => ✅  22-oct-23, 02:10
+;; - tank + missiles + UFOs = game => next
 
 ;; DOMAIN ANALYSIS
 ;; CONSTANTS

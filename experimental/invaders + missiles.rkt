@@ -589,7 +589,7 @@
 
 ;; what I did here is risky, but life is risky normally
 
-
+;; alright, everything is working properly, how to combine everything together now.
 
 
 
