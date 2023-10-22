@@ -305,7 +305,7 @@
              1)
           (= (random (/ 10000 INVADE-RATE))
              0))
-      (cons (make-invader (random WIDTH) 0 (random 5)) loi)
+      (cons (make-invader (random WIDTH) 0 (+ (random 4) 1)) loi)
       loi))
 
 (define (filter-invaders loi)
